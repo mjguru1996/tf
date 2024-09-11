@@ -11,4 +11,7 @@ resource "aws_vpc" "nab" {
 }
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.nab.id
+  tags = {
+    Name = "gw"
+  }
 }
