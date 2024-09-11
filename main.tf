@@ -26,3 +26,10 @@ resource "aws_route_table" "prod-rt" {
     Name = "prod-rt"
   }
 }
+resource "aws_subnet" "prod-subnet" {
+cidr_block = "10.0.1.0/24"
+vpc_id = aws_vpc.nab.id
+tags = {
+    Name = "prod-subnet"
+  }
+}
