@@ -38,22 +38,24 @@ resource "aws_route_table_association" "a" {
   subnet_id      = aws_subnet.prod-subnet.id
   route_table_id = aws_route_table.prod-rt.id
 }
-resource "aws_security_group" "allow_web" {
-  name        = "allow_web_traffic"
-  description = "Allow TLS inbound traffic "
-  vpc_id      = aws_vpc.nab.id
+resource "aws_vpc" "mainvpc" {
+  cidr_block = "10.1.0.0/16"
+}
 
-  ingress =  {
-    description = "HTTP"
-    from_port = "22"
-    to_port = "22"
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress = {
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.mainvpc.id
+
+  ingress {
+    protocol  = -1
+    self      = true
     from_port = 0
-    to_port = 0
-    protocol ="-1"
+    to_port   = 0
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
