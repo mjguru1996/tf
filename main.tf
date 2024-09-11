@@ -11,3 +11,13 @@ resource "aws_instance" "web" {
     Name = "webserver"
   }
 }
+resource "aws_vpc" "nab" {
+    cidr_block = "10.1.0.0/16"
+     tags = {
+    Name = "production"
+  }  
+}
+resource "aws_subnet" "public" {
+vpc_id = aws_vpc.nab.id
+cidr_block = "10.1.0.0/24"
+}
