@@ -59,7 +59,7 @@ resource "aws_default_security_group" "default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-resource "aws_network_interface" "prod" {
+resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.prod-subnet.id
   private_ips     = ["10.0.1.50"]
   security_groups = [aws_default_security_group.default.id]
