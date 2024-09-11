@@ -20,4 +20,7 @@ resource "aws_vpc" "nab" {
 resource "aws_subnet" "public" {
 vpc_id = aws_vpc.nab.id
 cidr_block = "10.1.0.0/24"
+tags = {
+    Name = "production-subnet"
+  }  
 }
