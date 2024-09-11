@@ -50,6 +50,7 @@ resource "aws_default_security_group" "default" {
     self      = true
     from_port = 0
     to_port   = 0
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
